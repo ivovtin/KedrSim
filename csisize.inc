@@ -1,0 +1,8 @@
+*KEEP,CSISIZ.
+      real RC,RC1,RC2,DIS,ELT,CLEN,CRXMC,CRYMC,CRZMC,
+     &	CRDX,CRDY,CRDZ,CRXRL,CRYRL,CRZRL
+      COMMON/CSISIZ/RC,RC1,RC2,DIS,ELT,CLEN,
+     $   CRXMC(10,10,4,2),CRYMC(10,10,4,2),CRZMC(2,10,10,4,2), !положение кристалла MC
+     $   CRDX(10,10,4,2),CRDY(10,10,4,2),CRDZ(10,10,4,2), !размеры кристалла MC
+     $   CRXRL(14,12,4,2),CRYRL(14,12,4,2),CRZRL(14,12,4,2) !положение кристалла REAL
+*KEND.

@@ -1,0 +1,67 @@
+*
+*  Файл данных для построения гистограмм
+*
+*   Параметры: ENE(1), MOM(2), TET(3),  CTE(4),  PHI(5), TYP(6), GEN(7)  
+*     (17)     NPW(8), VEX(9), VEY(10), VEZ(11), TOR(12),                
+*              TTR(13), ACN(14), ACA(15), TFN(16), TFA(17)
+*
+C1: MOM  0. 2000.
+C2: GEN  -0.5  0.5
+C3: TYP  0.5  1.5
+C4: TYP  1.5  4.5
+*C5: NPW  2.5  4.5
+*C6: NPW  3.5  4.5
+*C7: NTF  1.5  100.5
+*C8: NTF  2.5  100.5
+*C9: ACA  0.01   1000.
+*               Formulas: <= 9
+F1: C2*C3          
+F2: C2*C4
+*F3: C4
+*F4: C2*C6
+*F5: C2*C7
+*F6: C1+C2
+*F7: C7
+*F8: C8
+*F9: C9+/C9
+*
+*               Histograms 1-dim:  <= 9
+*
+*H0: MOM 
+*H0: ACN
+*H0: TFN
+*H0: NTF
+H1: F2 MOM Momentum of elec.and pos. 100  0.0  2000.
+H1: F1 MOM Momentum of photons 100  0.0  1000.  
+H1: F1 MOM Momentum of photons 100  0.0  100.
+H1: F1 MOM Momentum of photons 100  0.0  10.
+*H1: F4 MOM Momentum of pi+-  50  0.0  1000.
+*H1: F3 CTE COS(TETA) 100  -1.00  1.00
+*H1: F1 VEX Ver-x (mm)  50  -0.5  100.5
+*H1: F1 VEY Ver-y (mm)  50  -0.5  100.5   
+*H1: F1 VEZ Ver-z (mm)  50  -0.5  100.5   
+*H1: F1 TOR Time of orig. (mm/c) 50 -0.5 100.5
+*H1: F1 TTR Time of tracking (mm/c) 50 -0.5 100.5
+*H1: F7 GEN Gener-n     10   0.  10.
+*H1: F7 NTF Number of ToF  30  -0.25  15.25
+*H1: F8 NTF Number of ToF  30  -0.25  15.25
+*H1: F9 NTF Number of ToF  30  -0.25  15.25
+*H1: F9 NAC Number of ATC  30  -0.25  15.25
+*H1: F9 NTO Number of particles 30  -0.25  15.25
+*H1: F9 NCH Number of charged particles 30  -0.25  15.25
+*H1: F9 NNE Number of neutral particles  30  -0.25  15.25
+*H1: F9 NFO Number of photons 30  -0.25  15.25
+*H1: F9 MUH Number of hits in mu-system 30  -0.25  15.25
+*H1: F7 TFA Time in ToF (1ns=25ch) 100   0.  200.
+*H1: F8 TFA Amplitude in ToF (1pe=5ch)   100   0.  200.
+*H1: F9 ACA Amplitude in ATC (1pe=30ch)   100   0.  500.
+*H1: F9 ACA Amplitude in ATC (1pe=30ch)   100   -500.  500.
+*H1: F9 ACN Number of ATC    80   -0.5  80.5
+*
+*               Histograms 2-dim:  <= 9
+*
+*H2: F6 TFN TFA Num Tof Ampl in ToF  128  126.5  255.5  100  -0.5 2000.5    
+*H2: F6 TFN TFA Num ToF Time in ToF  128   -0.5  126.5  100  -0.5 2000.5                 
+*------------------*  up to 20 first characters  
+END
+*

@@ -1,0 +1,15 @@
+atc_geom.F
+               - подпрограмма геометрии черенковских счетчиков
+atc_card.F
+               - Subr. reads card for aerogel counters simulation.
+                 Добавлена возможность расширенного подключения/отключения геометрии АЧС.
+atc_amp.F
+	       - Determines average number of photo-electrons in counters
+atc_hits.F
+               - Defines hits of aerogel threshold counterts
+atc_digi.F
+               - Preparation of common-block with data from ATC for writing
+atcrawhits.inc
+               - This common block contains raw information about hits in ATC
+
+

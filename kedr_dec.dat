@@ -1,0 +1,33 @@
+*
+*  Add particles to GEANT ones: name, number of tracking routine
+*
+ADDintional particles 
+*
+eta_c  3
+*
+eta'(958) 3
+*
+END of section with edditional particles
+*
+* New or modified decays, groups can be separated with *
+*
+DECays addition or modification
+eta_c phsp pi+ pi- eta'(958) 100. 
+*
+eta'(958) phsp pi+ pi- eta 100.
+END of decays section
+
+
+
+*   Zagotovki
+
+
+*chi_c0 3
+*Upsilon(5S) 3
+
+*omega(782) phsp pi+ pi- pi0 100.
+*
+*eta'(958) phsp pi0 pi0 eta 100.
+*chi_c0 phsp gamma gamma 100.
+*pi0 phsp gamma gamma 100.
+*Upsilon(5S) phsp el+ el- 100.

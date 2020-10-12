@@ -1,0 +1,22 @@
+*KEEP,DCWIRE.
+C
+      double precision XSWIR,YSWIR,XFWIR,YFWIR,
+     +   XPWIR,YPWIR,
+     +   XSWIRZ,YSWIRZ,XFWIRZ,YFWIRZ,
+     +   XPWIRZ,YPWIRZ,
+     +  XSWIR0,YSWIR0,DXSW0Z,DYSW0Z
+      double precision WUV(1:3,1:6,1:3,1:54)
+      double precision WUV34(1:3,1:3,1:54)
+      double precision XSWR(1:6,1:3,1:54),YSWR(1:6,1:3,1:54)
+      COMMON/XYWIRE/ XSWIR(6,7),YSWIR(6,7),XFWIR(7,2,7),YFWIR(7,2,7),
+     +   XPWIR(2,7),YPWIR(2,7),
+     +   XSWIRZ(6,3),YSWIRZ(6,3),XFWIRZ(7,2,3),YFWIRZ(7,2,3),
+     +   XPWIRZ(2,3),YPWIRZ(2,3)
+     +   ,XSWIR0(7),YSWIR0(7),DXSW0Z(3),DYSW0Z(3)
+      common /VUWIRE/  WUV,XSWR,YSWR,WUV34
+      PARAMETER (ITMBD=750+1)
+      COMMON/TIME2X/ XTIM(ITMBD),XTIMZ(ITMBD,3)
+     +   ,XTIM0(ITMBD),XTIMZ0(ITMBD,3)
+      save /VUWIRE/
+C
+*KEND.

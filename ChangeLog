@@ -1,0 +1,453 @@
+2005-06-09  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* krgeom.F, lk_card.F, lk_geomp.inc, mc.cards, medpar.inc, ugmate.F:
+	Добавил возможность задавать в mc.cards слой газообразного криптона сверху,
+	карта LKGAP.
+
+2005-05-23  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* ugmate.F:
+	Поправил ошибочно задаваемую epsil=-0.01 для воздуха с магнитным полем.
+
+2005-05-06  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gukine.F: *** empty log message ***
+
+	* ugmate.F:
+	Поменял параметры воздуха с магнитным полем (MEDAIF) - убрал автоматический
+	расчет параметров. В результате шаг частиц уменьшился, это привело к тому,
+	что частицы теперь вроде бы не пролетают через сц. счетчики, не замечая их.
+
+2005-04-28  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gen_koralb.F:
+	Генератор случайных чисел в gen_koralb.F заменен на rlu.
+
+	* gukine.F, mc.cards, ugcard.F:
+	Добавил в карту RNDG 2-й параметр, задавая который равным числу вызовов
+	rlu на данном событии (оно печатается вместе со случайными числами GEANT), и RNDG
+	соответствующим образом, можно повторить последовательность событий с данного события.
+
+2005-04-18  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* mc.cards, uginit.F:
+	Добавил возможность печати объёмов, материалов, параметров среды из mc.cards (карта PRINT)
+
+2005-04-07  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* lk_hitd.F, lkg2p.F, lkp2g.F:
+	Файлы данных для криптона передвинуты из LKrData в KEmcdata.
+
+2005-04-04  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gukine_t.F:
+	Модифицирован генератор 311 - добавлена возможность удаления продуктов распада
+	J/Psi.
+
+2005-03-17  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gukine_s.F, ludat2m.F, uginit.F, ugmate.F:
+	1) занесена ludat2m.f - модификация /ludat2/ из jetset7.4
+	   в соответствии с kedr_part.dat
+
+	2) Обновлена uginit.F (вызов ludat2m)
+
+	3) Обновлена gukine_s.F - добавлен выбор мод распада тау+, тау- для ген.
+	203
+
+	4) Чуть загрублены параметры трекинга для ДК, чтобы не было много шагов.
+
+2005-03-04  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* dcdigi.F, gustep.F, ir_geom.F, medpar.inc, ugmate.F:
+	Для газа ДК и ВД заданы для точности трекинга
+	 TMAXFD=0.0001
+	 DMAXMS = 0.01
+	gustep.F  << Добавлен gcphys.inc и поправки связанные с работой с флагом
+	          <<      LOSS 0
+	dcdigi.F  << Добавлен gcphys.inc и несколько поправок для использования
+	              отладочной печати.
+	ugmate.F: в веществах medalu,medcop,medtit,medber,medirv,medtin,medlat
+	включено поле
+	medpar.inc: добавлено вещество medcof=38 (медь без поля)
+	ir_geom: medcop->medcof (без поля).
+
+2005-03-01  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* aitr.F: Удалена aitr.F (включена в gen_3prt.F)
+
+	* csgeom.F, cshit.F, csicard.F, gen_3prt.F, gukine_t.F, gutrev.F, kedrsim.F, mcconrl.F, mctorl.F, ugcard.F, ugeom.F:
+	1) gukine_t.F:
+	   а) в вызове pst_gamma_x.f (генератор 316) устранен лишний парамер
+	      в генераторе, исправлены ошибки.
+	   б) генератор 314 перенесен в KsGenPST
+
+	2) Для подпрограмм моделирования CsI калориметра введены единообразные
+	   названия. В связи с этим:
+
+	csicard.F -> csi_card.F
+	csgeom.F  -> csi_geom.F
+	cshit.F   -> csi_hit.F
+	mcconrl.F -> csi_mcconrl.F
+	mctorl.F  -> csi_mctorl.F
+
+	Обновились: gutrev.F, ugeom.F, ugcard.F
+
+	3) Обновлена gen_3prt.F (в модуль включена п/п aitr.F).
+
+2005-02-28  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* dcdigi.F, dcrawhits.inc, filerw.F, gustep.F, vd_dig.F:
+	dcdigi.f       << Добавлена возможность
+	gustep.f       << псевдо хитов при нулевых dE/dx (если LOSS 0 )
+	dcrawhits.inc  << Увеличен размер массива сырых хитов
+	filerw.f       << и соответственно проверка
+	vd_dig.F       << установлена эффективность  трубочек 1
+
+2005-02-25  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* dcdigi.F, dcgeom.F, dcwire.inc: Исправлены ошибки (?)
+
+2005-02-18  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* dcdigi.F: Исправлена ошибка К. Тодышевым.
+
+2005-02-17  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* dcdigi.F, gustep.F: Небольшие исправления в dcdigi.F,gustep.F.
+
+2005-02-16  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* dchits.inc: Добавлен забытый dchits.inc.
+
+	* celpar.inc, dcdigi.F, dcgeom.F, dchit.F, dcrawhits.inc, filerw.F, gustep.F:
+	К. Тодышевым исправлена ошибка моделирования хитов в ДК (допущенная давно Козловым).
+
+2005-02-02  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* mc.cards, pilot.h, ugmate.F:
+	Расчет параметров среды для трекинга частиц заменен на автоматический
+	расчет, за исключением LKr (в нем требуется, чтобы шаг частиц был не более
+	1мм). Использование параметров, задаваемых "руками", приводило к тому, что
+	до этого в релизах 1.0.0 и stable частицы проводились через детектор
+	неправильно - например, электроны, летящие из места встречи под
+	полярным углом ~ 80 градусов, примерно в половине случаев теряли всю свою
+	энергию в VD.
+
+2004-12-22  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* compinfo.F: Поправил печать версии и даты компиляции.
+
+2004-12-21  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile, compinfo.F, kedr_hist.dat, kedrsim.F, mc.cards:
+	Заданы правильные на данный момент карты моделирования, добавлена печать
+	даты компиляции, добавлена заготовка для заполнения гистограмм.
+
+2004-12-17  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile, filerw.F, kedrsim.F, uginit.F, uglast.F, vdgeom.F:
+	Окончательно избавился от KedrData, добавил печать номера релиза по
+	команде -v.
+
+2004-12-08  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile, xcfile.c: Переход на функции чтения/записи из ReadNat
+
+	* kedr_part.dat: Перенесен из KedrData
+
+2004-12-07  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* lk_hitd.F, mu_coor.dat, mu_geom.F, vdgeom.F, vdslots.tbl, vdslots_sim.tbl, vdtabl_sim.tbl:
+	Убрано использование файлов из KedrData
+
+2004-11-25  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* dcgeom.F, lk_hitd.F, lkg2p.F, lkp2g.F, mu_geom.F, ppar.F, vdgeom.F:
+	Теперь открытие файлов данных происходит сначала из текущей директории.
+
+	* dcgeom.F, lk_hitd.F: Исправлены ошибки в пути, убрана печать.
+
+	* connections_sim.dc, dcgeom.F, lk_hitd.F, lkg2p.F, lkp2g.F, mu_geom.F, ppar.F, vdgeom.F, vdpar.tbl, vdslots.tbl, vdtubes.tbl:
+	Переход на открытие файлов данных с помощью пути в KEDR_RELEASE
+
+2004-11-24  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* lk_digi.F:
+	При задании шумов в башнях и полосках =0. в выходной файл записываются
+	теперь только каналы с ненулевым энерговыделением.
+
+2004-11-23  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* lk_digi.F:
+	Добавил печать амплитуд в криптоне при превышении порога на запись
+
+2004-11-11  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile, filerw.F: Убран ss_dat из filerw.F, определен в ReadNat
+
+2004-10-28  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* lujets.inc: lujets.inc берется из /cern/pro/include/geant321
+
+	* gukine_t.F:
+	Убран вызов luedit(2) для сохранения цепочки распадов в генераторе 315.
+
+	* gen_koralb.f, gen_revent.F, gen_revent.f, gen_tprints.F, gen_tprints.f, gen_usera.F, gen_usera.f, gen_vermas.F, gen_vermas.f, gfout1.F, gfout1.f, gpart.F, gpart.f, gufld.F, gufld.f, gukine.F, gukine.f, gukine_s.F, gukine_s.f, gukine_t.F, gukine_t.f, guout.F, guout.f, gustep.F, gustep.f, gutrak.F, gutrak.f, gutrev.F, gutrev.f, his_fill.F, his_fill.f, his_init.F, his_init.f, ir_geom.F, ir_geom.f, kedr_dec.dat, kedrking.F, kedrking.f, kedrsim.F, kedrsim.f, kedrsim_i.F, kedrsim_i.f, kf2kg.F, kf2kg.f, kffromkg.F, kffromkg.f, kg2kf.F, kg2kf.f, kgfromkf.F, kgfromkf.f, krgeom.F, krgeom.f, lk_bsn.F, lk_bsn.f, lk_card.F, lk_card.f, lk_chnum.F, lk_chnum.f, lk_digd.F, lk_digd.f, lk_digi.F, lk_digi.f, lk_hist.F, lk_hist.f, lk_hitc.F, lk_hitc.f, lk_hitd.F, lk_hitd.f, lk_hits.F, lk_hits.f, lkbsn.F, lkbsn.f, lkg2p.F, lkg2p.f, lkp2g.F, lkp2g.f, mc.cards, mcconrl.F, mcconrl.f, mctorl.F, mctorl.f, mu_card.F, mu_card.f, mu_ev.F, mu_ev.f, mu_find.F, mu_find.f, mu_geom.F, mu_geom.f, ppar.F, ppar.f, rc2cr.F, rc2cr.f, search_free_unit.F, search_free_unit.f, tof_digi.F, tof_digi.f, tof_digi1.F, tof_digi1.f, tof_geom.F, tof_geom.f, tof_hit.F, tof_hit.f, tof_peta.F, tof_peta.f, tof_step.F, tof_step.f, tof_tube.F, tof_tube.f, tof_zero.F, tof_zero.f, ts_geom.F, ts_geom.f, ts_geom_hd1.F, ts_geom_hd1.f, ts_geom_hd2.F, ts_geom_hd2.f, ts_geom_tube.F, ts_geom_tube.f, ts_hits.F, ts_hits.f, ts_hits_dat.F, ts_hits_dat.f, ts_hits_hd0.F, ts_hits_hd0.f, ts_tag.F, ts_tag.f, ugcard.F, ugcard.f, ugeom.F, ugeom.f, uginit.F, uginit.f, uglast.F, uglast.f, ugmate.F, ugmate.f, uhfile.F, uhfile.f, uhinit.F, uhinit.f, vaccham.F, vaccham.f, vd_dig.F, vd_dig.f, vdcard.F, vdcard.f, vdcoor.F, vdcoor.f, vdgeom.F, vdgeom.f, vdhit.F, vdhit.f, Makefile, aitr.F, aitr.f, atc_amp.F, atc_amp.f, atc_amp1.F, atc_amp1.f, atc_card.F, atc_card.f, atc_digi.F, atc_digi.f, atc_geom.F, atc_geom.f, atc_geom1.F, atc_geom1.f, atc_hist.F, atc_hist.f, atc_hits.F, atc_hits.f, atc_specn.F, atc_specn.f, cfcurt.F, cfcurt.f, compinfo.F, compinfo.f, cosi.F, cosi.f, cosrn.F, cosrn.f, csgeom.F, csgeom.f, cshit.F, cshit.f, csi_hitr.F, csi_hitr.f, csicard.F, csicard.f, dccard.F, dccard.f, dcdigi.F, dcdigi.f, dcgeom.F, dcgeom.f, dchit.F, dchit.f, dctamhits.inc, ddcosi.F, ddcosi.f, dec_mode.F, dec_mode.f, draw.kumac, fgct.F, fgct.f, filerw.F, filerw.f, free_rotm.F, free_rotm.f, gcbank.inc, gccuts.inc, gcdraw.inc, gcflag.inc, gckine.inc, gcking.inc, gcnum.inc, gconsp.inc, gconst.inc, gcphys.inc, gcscal.inc, gcsets.inc, gctime.inc, gctmed.inc, gctrak.inc, gcunit.inc, gcvolu.inc, gen_2prt.F, gen_2prt.f, gen_3prt.F, gen_3prt.f, gen_bhw104.F, gen_bhw104.f, gen_cosmics.F, gen_cosmics.f, gen_eeg_Buk.F, gen_eeg_Buk.f, gen_ggee.F, gen_ggee.f, gen_ggmmg.F, gen_ggmmg.f, gen_koralb.F:
+	1) Заменен norran в vd_dig.f на granor
+
+	2) В dcdigi.f исправления в определении времени прихода кластеров ионизации
+
+	3) В dccard.f добавлены комментарии
+
+	4) Makefile со стандартной сборкой через rules.mk
+
+	5) Добавлены в KedrSim mc.cards, draw.kumac, kedr-dec.dat, dctamhits.inc
+
+	6) Include-файлы GEANT берутся из /cern/pro/include/geant321, соответственно они
+	удалены из KedrSim
+
+2004-04-19  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gen_tprints.f: some printing added
+
+2004-04-13  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile, ir_geom.f: Modifications for release 0.1.5
+
+	* filerw.f, gen_2prt.f, gen_3prt.f, gen_4prt.f, gen_bhw104.f, gen_cosmics.f, gen_eeg_Buk.f, gen_ggee.f, gen_ggmmg.f, gen_koralb.f, gen_revent.f, gen_tprints.f, gen_usera.f, gen_vermas.f, gukine.f, gukine_s.f, gukine_t.f, gustep.f, his_fill.f, his_init.f, ir_geom.f, kedrsim.f, lk_card.f, lk_digi.f, lk_digp.inc, lk_digv.inc, lkg2p.f, mu_find.f, mu_geom.f, s1prt.inc, serr.inc, ugcard.f, uglast.f:
+	modifications for release 0.1.5
+
+2004-02-27  Evgenij M. Baldin  <baldin@kedr-18.inp.nsk.su>
+
+	* gen_cosmics.f: Ошибка в определении числа mu+ mu-
+
+2004-02-25  Evgenij M. Baldin  <baldin@kedr-18.inp.nsk.su>
+
+	* gen_cosmics.f: Добавил
+	      include 'ver_event.inc' !vertx,verty,vertz,vrtx(3) vrtx-точка возникновения частицы
+	и переименовал массив VERTEX в vrtx, чтобы вершина писалась правильно.
+
+2003-12-02  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gen_2prt.f, gen_3prt.f, gen_4prt.f, Makefile, atc_amp.f, atc_card.f, atc_digi.f, atc_geom.f, filerw.f, gu2prt.f, gu3prt.f, gu4prt.f, gukine.f, gukine_s.f, gukine_t.f, gustep.f, gustep_atc.f, gutrev.f, his_fill.f, his_init.f, rlu.f, spac1.f, spac2.f, spc.f, tf_posl.inc, tfgeom.f, tfhit.f, tof_digi.f, tof_digi1.f, tof_geom.f, tof_posl.inc, tof_step.f, tof_tube.f, ugcard.f, uginit.f, uglast.f, ugmate.f:
+	Modifications for release 0.1.4
+
+2003-06-23  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* dcdigi.f, free_rotm.o: *** empty log message ***
+
+2003-06-21  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile, dccard.f, dcdigi.f, dchit.f, filerw.f, gen_koralb.f, gustep.f, medpar.inc, ugmate.f, vdgeom.f:
+	DC hits record included and VD electronics described
+
+2003-06-18  Corneli Yu. Todyshev  <todyshev@kedr-18.inp.nsk.su>
+
+	* filerw.f: Новый tag.
+
+	* dccard.f, filerw.f:
+	Добавлена возможность выключать запись "сырых" хитов.
+
+2003-06-13  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gukine_t.f: *** empty log message ***
+
+2003-06-12  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile, gukine.f, gen_eeg_Buk.f, um1086.f:
+	*** empty log message ***
+
+2003-06-11  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gg_eegen.f, gg_mmggen.f, gukine.f, gukine_s.f, gukine_t.f, lk_hitc.f, tof_digi.f, tof_tube.f, Makefile, celpar.inc, filerw.f, gen_bhw104.f, gen_cosmics.f, gen_ggee.f, gen_ggmmg.f, gen_koralb.f:
+	Modifications for release 1.3
+
+2003-06-11  Evgenij M. Baldin  <baldin@kedr-18.inp.nsk.su>
+
+	* README: New file.
+
+	* README: проба пера
+
+	* dcdigi.f, dchit.f, filerw.f, gustep.f:
+	Возвращени на круги своя, а именно tag V00-01-05
+
+2003-05-15  Corneli Yu. Todyshev  <todyshev@kedr-18.inp.nsk.su>
+
+	* dcdigi.f:
+	Исправление кода вычисления скорости частицы в точке "хита", это
+	необходимо для вторичной записи информации с ДК.
+
+2003-04-04  Corneli Yu. Todyshev  <todyshev@kedr-18.inp.nsk.su>
+
+	* dcdigi.f, dcrawhits.inc, filerw.f:
+	Добавлена корректная запись "сырых" хитов в файл.
+	СVS: ----------------------------------------------------------------------
+
+2003-03-27  Corneli Yu. Todyshev  <todyshev@kedr-18.inp.nsk.su>
+
+	* dcdigi.f, dchit.f, dcrawhits.inc, filerw.f, gustep.f:
+	Изменения для записи "сырой" информации о хитах ДК.
+
+	* kg2kf.f: proba
+
+2003-03-07  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gutrev.f: forgotten changes in history record
+
+	* kedrking.f:
+	sizes of sensitive part of VD reduced to r=12.3cm and dz=67cm to remove
+	showers in VD flanges from HISTORY record
+
+2003-03-04  Khristian A. Kotov  <kotov@kedr-18.inp.nsk.su>
+
+	* Makefile:
+	'lib' target was added ( alias of 'all' target )
+
+2003-02-28  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* filerw.f, gukine.f, gukine_s.f, gukine_t.f, gustep.f, gutrak.f, uginit.f:
+	modifications for release 0.1.1
+
+2002-11-15  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* kedrsim_i.f: kedrsim_i.f corrected : include 'extdef.inc'
+
+2002-11-14  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile, atc_hist.f, filerw.f, gukine.f, gukine_s.f, gustep.f, kedrsim_i.f, kf2kg.f, kffromkg.f, kg2kf.f, kgfromkf.f, mctorl.f, ppar.f, uginit.f, vaccham.f:
+	Updates for version 0.1.0
+
+2002-10-04  Khristian A. Kotov  <kotov@kedr-18.inp.nsk.su>
+
+	* Makefile:
+	Забыл убрать $(LIB)pst.o
+
+2002-10-01  Khristian A. Kotov  <kotov@kedr-18.inp.nsk.su>
+
+	* pst.f:
+	Moved to standalone package GenPST
+
+2002-06-28  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gukine_s.f:
+	"include 'gcflag.inc'" statement added for proper work of 207 generator (BHWIDE)
+
+2002-06-05  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* atc_single.his: atc_single.his removed (in workdir/simulation now)
+
+	* gukine_s.f, gukine_t.f, gustep.f, gutrev.f, kedr_prop.f, ppar.f, psivp.f, pst.f, tabdec.inc, ts_tag.f, tstag.f, ugcard.f, ugeom.f, uginit.f, Makefile, atc_hist.f, eehadrns.f, filerw.f, gcphys.inc, gghadrns.f, ggresps.f, gpart.f, gukine.f:
+	updates for release 16
+
+2002-05-15  Evgenij M. Baldin  <baldin@kedr-18.inp.nsk.su>
+
+	* mctorl.f:
+	Фикс для CsI оказался неправильным :( - поправлен был только один
+	кристалл - теперь все три
+
+2002-04-08  Evgenij M. Baldin  <baldin@kedr-18.inp.nsk.su>
+
+	* mctorl.f: Опять ошибка :(
+
+2002-04-05  Evgenij M. Baldin  <baldin@kedr-18.inp.nsk.su>
+
+	* mctorl.f: Баг фикс для перестановки кристаллов - следует поправить
+
+2002-04-04  Khristian A. Kotov  <kotov@kedr-18.inp.nsk.su>
+
+	* Makefile:
+	Поправлен путь к KedrData. Включен в зависимости free_rotm.o .
+
+2002-04-03  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile, atc_hist.f, csgeom.f, filerw.f, gukine.f, gutrev.f, kedrsim_i.f, kffromkg.f, kgfromkf.f, lujeth.inc, mu_find.f, ppar.f, rlu.f, uginit.f, vd_dig.f, ver_event.inc:
+	In MC record histories of primary and secondary simulations added
+
+2002-04-01  Evgenij M. Baldin  <baldin@kedr-18.inp.nsk.su>
+
+	* mctorl.f:
+	* Перекодирование трёх каналов (то есть полное соответствие с реальностью)
+	* Для следующих каналов перепутаны кабеля (точнее старые оборваны)
+	* 20613 (669) <- 20608
+	* 40613 (1053) <- 40607
+	* 60613 (285) <- 60610
+
+2002-03-07  Evgenij M. Baldin  <baldin@kedr-18.inp.nsk.su>
+
+	* csgeom.f:
+	Торцы CsI на самом деле находятся на 4 см дальше от места встречи
+	чем было раньше - причина переделанные обечайки для того чтобы
+	аэрогель влез
+
+	>>      DATA RC/6.05/,RC1/8.05/,RC2/8.85/,DIS/93./,ELT/1.12/,CLEN/15./
+	<<      DATA RC/6.05/,RC1/8.05/,RC2/8.85/,DIS/97./,ELT/1.12/,CLEN/15./
+
+2002-01-21  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile, gukine_i.f: gukine_i.f is obsolete
+
+2002-01-18  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* kedr_prop.f, lkg2p.f, vdgeom.f, dcgeom.f, gukine.f, gukine_i.f, lk_hitd.f, lkp2g.f, mu_geom.f, ugcard.f, uginit.f:
+	18.01.02
+	1)generator 302 error corrected, for generators 1-49 print of initial
+	simulation data added;
+	2)card KINE -> GENE;
+	3)card HEPS added
+	changed: gukine.f,uginit.f,ugcard.f,gukine_i.f
+	added: kedr_prop.f
+	4)path to KedrData in data file names is taken in KedrData/kdpath.inc
+	changed: vdgeom.f dcgeom.f mu_geom.f lkp2g.f lk_hitd.f
+	deleted: lkg2p.f
+
+2001-10-26  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* lkg2p.f: corrected ibuf22->ibuf24
+
+2001-10-25  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* gukine_i.f:
+	same as gukine.f excepting call of qed, BHW, marini,marout
+
+2001-10-24  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* Makefile: added tstag.o
+
+	* Makefile: deleted um1026.f, um1088.f, umb037.inc, umb038.inc
+
+	* tstag.f: tests tagging system hitting by sc.electrons
+
+	* umb038.inc, umb037.inc, um1026.f, um1088.f: obsolete
+
+	* gukine.f, um1086.f: Generator 51 corrected
+
+2001-10-22  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* uginit.f: rawb(evb_recfmt)=3 (record format in event record)
+
+	* filerw.f: lkr numeration now from 1201 (was 1202)
+
+	* lkp2g.f, lkg2p.f:
+	path to directory omitted, new lkr_cdb.dat: ibuf21->ibuf24
+
+2001-09-12  Vladimir M. Malyshev  <malysh@kedr-18.inp.nsk.su>
+
+	* csgeom.f, lk_digi.f, lkg2p.f, lkp2g.f, mcconrl.f, mctorl.f, ugeom.f, uginit.f, vaccham.f:
+	Modifications:
+	Vacuum chamber -  magnetic field described correctly;
+	Csi - channel's numeration corresponds to the experimental one;
+	LKr - channel's numeration corresponds to the experimental one;
+	gukine.f - in output file for generators 1-49 (single particle)
+	energy is recorded now instead of momentum;
+
+2001-07-16  Khristian A. Kotov  <kotov@kedr-18.inp.nsk.su>
+
+	* Makefile:
+	Изменились правила - изменился Makfile.
+
+2001-07-09  Khristian A. Kotov  <kotov@kedr-18.inp.nsk.su>
+
+	* gg_mmggen.f, gghadrns.f, ggresps.f, gu2prt.f, gu3prt.f, gu4prt.f, gufld.f, gukine.f, gukine_i.f, guout.f, gustep.f, gustep_atc.f, gutrak.f, gutrev.f, ir_geom.f, kedrif.inc, kedrking.f, kedrsim.f, kedrsim_i.f, kinpro.inc, krgeom.f, lk_bsn.f, lk_card.f, lk_chnum.f, lk_curbl.inc, lk_digd.f, lk_digi.f, lk_digp.inc, lk_digt.inc, lk_digv.inc, lk_edep.inc, lk_eloss.inc, lk_geomp.inc, lk_hdsw.inc, lk_hist.f, lk_hitc.f, lk_hitd.f, lk_hitp.inc, lk_hits.f, lk_hitv.inc, lk_rec.inc, lkbsn.f, lkg2p.f, lkp2g.f, lujets.inc, luns.inc, mcconrl.f, mctorl.f, medpar.inc, mu_card.f, mu_data.inc, mu_ev.f, mu_find.f, mu_geom.f, mu_par.inc, pilot.h, pkin.inc, psivp.f, rc2cr.f, s1prt.inc, search_free_unit.f, serr.inc, spac1.f, spac2.f, spc.f, tabdec.inc, tf_posl.inc, tfgeom.f, tfhit.f, tof_digi.f, tof_digi1.f, tof_geom.f, tof_hit.f, tof_peta.f, tof_step.f, tof_tube.f, tof_zero.f, ts_cmb.inc, ts_geom.f, ts_geom_hd1.f, ts_geom_hd2.f, ts_geom_tube.f, ts_hits.f, ts_hits_dat.f, ts_hits_hd0.f, ugcard.f, ugeom.f, uginit.f, uglast.f, ugmate.f, uhfile.f, uhinit.f, um1026.f, um1086.f, um1088.f, umb037.inc, umb038.inc, vaccham.f, vd_dig.f, vd_map.inc, vd_par.inc, vdcard.f, vdcoor.f, vddata.inc, vdgeom.f, vdhit.f, ver_event.inc, xcfile.c, Makefile, aitr.f, atc_amp.f, atc_amp1.f, atc_card.f, atc_digi.f, atc_geom.f, atc_geom1.f, atc_hist.f, atc_hits.f, atc_single.his, atc_specn.f, atccom.inc, beam_sigma.inc, celpar.inc, cfcurt.f, compinfo.f, cosi.f, cosrn.f, csgeom.f, cshit.f, csi_digpar.inc, csi_hitr.f, csicard.f, csiloss.inc, csisize.inc, csiwrite.inc, dccard.f, dcdigi.f, dcgeom.f, dchit.f, dconst.inc, dcout.inc, dcwire.inc, ddcosi.f, dec_mode.f, dqfile.inc, drawpar.inc, eeg.inc, eehadrns.f, extdef.inc, fgct.f, fgctc.inc, fiel.inc, filerw.f, free_rotm.f, free_rotm.o, gcbank.inc, gccuts.inc, gcdraw.inc, gcflag.inc, gckine.inc, gcking.inc, gcnum.inc, gconsp.inc, gconst.inc, gcscal.inc, gcsets.inc, gctime.inc, gctmed.inc, gctrak.inc, gcunit.inc, gcvolu.inc, gfout1.f, gg_eegen.f:
+	Моделирование детектора.
+

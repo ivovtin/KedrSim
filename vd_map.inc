@@ -1,0 +1,3 @@
+*KEEP,VD_MAP.
+      COMMON /VD_map/ NTUB, XP(400), YP(400)
+*KEND.

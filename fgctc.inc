@@ -1,0 +1,3 @@
+      PARAMETER(NA=10000,NY=10000)
+      COMMON/FGCTC/DF,DAF,YMF,DYF,
+     1            CT(0:NA),ET(-NY:NY)
