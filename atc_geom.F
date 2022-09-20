@@ -5819,7 +5819,8 @@ c Positioning of the barrel 'long' counters 101-120
 c
         DO I=101,120
           CALL FREE_ROTMAT_NUMBER(IRM)
-          CALL GSROTM(IRM,90.,-9.-18.*(I-101)-2.48883822,90.,81.-18.*(I-101)-2.48883822,0.,0.)
+          CALL GSROTM(IRM,90.,-9.-18.*(I-101)-2.48883822,90.,90.-9.-18.*(I-101)-2.48883822,180.,0.)
+c
        	  DENSFLAG = 0
 	  DO K=1,MAXNDENS
 	     IF (NCDENS(K).eq.I) DENSFLAG=1
@@ -5838,7 +5839,8 @@ c Positioning of the barrel 'short' counters 121-140
 c
         DO I=121,140
           CALL FREE_ROTMAT_NUMBER(IRM)
-          CALL GSROTM(IRM,90.,-9.-18.*(I-121)-2.5495018,90.,81.-18.*(I-121)-2.5495018,0.,0.)
+ 	  CALL GSROTM(IRM,90.,-9.-18.*(I-121)-2.5495018,90.,90.-9.-18.*(I-121)-2.5495018,180.,0.)
+c
 	  DENSFLAG = 0
 	  DO K=1,MAXNDENS
 	     IF (NCDENS(K).eq.I) DENSFLAG=1
